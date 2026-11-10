@@ -1,0 +1,8 @@
+target/
+.idea/
+*.iml
+*.log
+# never commit service-account keys
+*serviceAccount*.json
+*firebase-key*.json
+.env*

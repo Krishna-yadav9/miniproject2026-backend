@@ -1,0 +1,25 @@
+# Render Blueprint for the Spring Boot backend.
+# Use it with: Render dashboard -> New -> Blueprint -> select the repo that contains this file.
+services:
+  - type: web
+    name: apexstore-backend
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /api/health
+    envVars:
+      - key: FIREBASE_PROJECT_ID          # your Firebase project id
+        sync: false
+      - key: FIREBASE_DATABASE_ID         # "(default)" unless you created a named database
+        value: "(default)"
+      - key: FIREBASE_SERVICE_ACCOUNT_JSON  # paste the WHOLE service-account JSON file content
+        sync: false
+      - key: JWT_SECRET                   # generated automatically (32+ random characters)
+        generateValue: true
+      - key: CORS_ALLOWED_ORIGINS         # your frontend URL, e.g. https://apexstore-frontend.onrender.com
+        sync: false
+      - key: ADMIN_EMAIL
+        value: admin@apexstore.com
+      - key: ADMIN_PASSWORD               # choose your own strong admin password
+        sync: false
